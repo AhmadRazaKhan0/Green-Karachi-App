@@ -43,9 +43,9 @@ export default function Layout({ children, navItems, showAuthNav = false }: Layo
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
+              <span className="text-white font-bold text-sm">L</span>
             </div>
-            <span className="font-semibold text-foreground text-base">HelpHub AI</span>
+            <span className="font-semibold text-foreground text-base">Helplytics AI</span>
           </Link>
 
           <div className="flex items-center gap-1">

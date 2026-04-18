@@ -42,9 +42,9 @@ export default function Onboarding() {
       <nav className="sticky top-0 z-50 bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">H</span>
+            <span className="text-white font-bold text-sm">L</span>
           </div>
-          <span className="font-semibold text-foreground">HelpHub AI</span>
+          <span className="font-semibold text-foreground">Helplytics AI</span>
           <span className="ml-4 text-sm text-muted-foreground">Onboarding</span>
           <a href="/dashboard" className="ml-auto text-sm text-muted-foreground hover:text-foreground">Dashboard</a>
           <a href="/profile" className="text-sm text-muted-foreground hover:text-foreground">Profile</a>

@@ -38,7 +38,7 @@ export default function Landing() {
               Find help faster.<br />Become help that matters.
             </h1>
             <p className="text-[#9ab] text-sm leading-relaxed mb-8 max-w-md">
-              HelpHub AI is a community-powered support network for students, mentors, creators, and builders. Ask for help, offer help, track impact, and let AI surface smarter matches across the platform.
+              Helplytics AI is a community-powered support network for students, mentors, creators, and builders. Ask for help, offer help, track impact, and let AI surface smarter matches across the platform.
             </p>
             <div className="flex gap-3 flex-wrap mb-10">
               <Link href="/login" data-testid="btn-open-demo" className="px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity">
@@ -173,7 +173,7 @@ export default function Landing() {
         {/* Footer */}
         <footer className="border-t border-border pt-8 pb-4 text-center">
           <p className="text-xs text-muted-foreground">
-            HelpHub AI is built as a premium-feel, multi-page community support product using HTML, CSS, JavaScript, and LocalStorage.
+            Helplytics AI is built as a premium-feel, multi-page community support product using HTML, CSS, JavaScript, and LocalStorage.
           </p>
         </footer>
       </div>

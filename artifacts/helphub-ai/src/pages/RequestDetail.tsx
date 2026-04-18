@@ -103,10 +103,10 @@ export default function RequestDetail({ id }: Props) {
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">AI SUMMARY</p>
               <div className="flex items-start gap-3 mb-4">
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shrink-0">
-                  <span className="text-white font-bold text-sm">H</span>
+                  <span className="text-white font-bold text-sm">L</span>
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground text-sm">HelpHub AI</p>
+                  <p className="font-semibold text-foreground text-sm">Helplytics AI</p>
                   <p className="text-sm text-muted-foreground leading-relaxed mt-1">{aiSummary}</p>
                 </div>
               </div>

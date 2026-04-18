@@ -42,13 +42,13 @@ export interface Notification {
   timestamp: string;
 }
 
-const USERS_KEY = "helphub_users";
-const REQUESTS_KEY = "helphub_requests";
-const MESSAGES_KEY = "helphub_messages";
-const NOTIFICATIONS_KEY = "helphub_notifications";
-const CURRENT_USER_KEY = "helphub_current_user";
+const USERS_KEY = "helplytics_users";
+const REQUESTS_KEY = "helplytics_requests";
+const MESSAGES_KEY = "helplytics_messages";
+const NOTIFICATIONS_KEY = "helplytics_notifications";
+const CURRENT_USER_KEY = "helplytics_current_user";
 
-const SEED_DONE_KEY = "helphub_seeded";
+const SEED_DONE_KEY = "helplytics_seeded";
 
 const defaultUsers: User[] = [
   {

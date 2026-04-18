@@ -8,7 +8,7 @@ export default function Login() {
   const users = getUsers();
   const [selectedUserId, setSelectedUserId] = useState(users[0]?.id || "");
   const [role, setRole] = useState("Both");
-  const [email] = useState("community@helphub.ai");
+  const [email] = useState("community@helplytics.ai");
   const [password] = useState("••••••••");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,9 +23,9 @@ export default function Login() {
       <div className="hidden lg:flex flex-col justify-center bg-[#1a2332] text-white w-1/2 p-16">
         <div className="flex items-center gap-2 mb-12">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">H</span>
+            <span className="text-white font-bold text-sm">L</span>
           </div>
-          <span className="font-semibold text-base">HelpHub AI</span>
+          <span className="font-semibold text-base">Helplytics AI</span>
         </div>
         <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-3">COMMUNITY ACCESS</p>
         <h1 className="text-4xl font-black leading-tight mb-6">
