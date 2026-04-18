@@ -33,7 +33,6 @@ export default function Landing() {
         {/* Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-[#1a2332] rounded-2xl p-10 text-white">
-            <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-6">SMIT Grand Coding Night 2026</p>
             <h1 className="text-4xl lg:text-5xl font-black leading-tight mb-4">
               Find help faster.<br />Become help that matters.
             </h1>
