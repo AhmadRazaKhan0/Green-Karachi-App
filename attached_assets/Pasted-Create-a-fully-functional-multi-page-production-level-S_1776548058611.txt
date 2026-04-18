@@ -1,0 +1,128 @@
+Create a fully functional, multi-page, production-level SaaS web application called Helplytics AI – Community Support Platform, designed to solve a critical gap in modern learning ecosystems where students struggle to find timely help while skilled individuals lack a structured platform to offer their expertise. The platform must feel like a real-world startup product, not a simple project, with a strong emphasis on premium UI/UX, scalable architecture, and intelligent interaction design. The system should enable users to seamlessly ask for help, provide help, track contributions, and build a collaborative learning environment powered by AI-like features.
+
+The application must follow a multi-page architecture (not a single page app) with clearly defined navigation flows, persistent data handling (via LocalStorage or backend like Firebase/Supabase depending on stack), and a highly intuitive user experience inspired by modern SaaS platforms such as Notion, Stripe, and Linear. The UI must be card-based, minimal, clean, highly spaced, and visually balanced, with smooth animations, micro-interactions, hover states, loading skeletons, and transitions that replicate real-world premium applications. The design should feel alive — including animated buttons, soft shadows, gradient accents, glassmorphism elements, and responsive layouts across all screen sizes.
+
+The platform should begin with a Landing Page that acts as a high-conversion marketing page, including a powerful hero section with a bold headline, subtext explaining the problem and solution, animated call-to-action buttons (e.g., “Get Started”, “Explore Community”), and visually engaging sections such as community stats (dummy but realistic), feature highlights, testimonials (optional), and a smooth scroll experience. This page should immediately communicate value and guide users into the platform.
+
+The Authentication Page must include both login and signup functionality with a modern UI similar to Apple or Stripe login systems, including role selection where users can define themselves as “Need Help”, “Can Help”, or “Both”. The form should include validation, animated inputs, and subtle transitions between login and signup states.
+
+After authentication, users must go through an Onboarding Flow where they input their name, skills, interests, and location. This page must include an AI-like system that intelligently suggests what skills the user can offer help in and where they might need help, based on keyword matching and simple logic simulation (no real AI required, but must feel smart). Suggestions should dynamically update as the user types.
+
+The Dashboard must act as the central control hub of the platform, displaying dynamic stat cards such as total requests, completed helps, active contributions, and trust score. It should also show recent help requests, AI-generated insights (e.g., “You are most active in JavaScript help”), and quick action buttons like “Create Request” or “Explore Feed”. The layout must resemble a modern SaaS analytics dashboard.
+
+The Explore / Feed Page should display all help requests in a structured card layout, each card containing title, description preview, tags, urgency level, and user info. It must include advanced filtering options such as category, urgency, skills, and location, with real-time filtering and search functionality.
+
+The Create Request Page must allow users to submit help requests with fields like title, description, tags, category, and urgency level. This page must include AI-like features such as automatic categorization based on keywords, smart tag suggestions, and the ability to rewrite/improve the user’s request for clarity.
+
+Each request should have a Request Detail Page where users can view the full description, an AI-generated summary, a list of users who offered help, and action buttons such as “I can help” and “Mark as solved”. This page should also visually highlight urgency and status.
+
+A Messaging / Interaction Page must allow basic communication between users, simulating chat functionality with a clean UI similar to modern messaging apps.
+
+The Leaderboard Page should rank top contributors based on activity, completed helps, and trust score, including badges and gamification elements to encourage participation.
+
+The AI Center Page should act as a smart insights hub, showing trends such as popular help categories, user activity insights, and personalized suggestions.
+
+The Notifications Page must track all user-related events such as new help requests, responses, and status updates, displayed in a clean timeline or list format.
+
+The Profile Page must display user information, skills, contributions, trust score, and earned badges, with an editable profile system.
+
+Additionally, include a Bonus Admin Panel where admins can manage requests, moderate content, and view analytics.
+
+The system must include at least one AI-like feature such as keyword-based categorization, urgency detection, or smart suggestions, implemented using JavaScript logic to simulate intelligence.
+
+The final product must feel like a real SaaS startup — polished, responsive, interactive, and scalable — not just a student project.
+
+📁 FULL FOLDER STRUCTURE (PRO LEVEL)
+helplytics-ai/
+│
+├── index.html (Landing Page)
+├── login.html
+├── signup.html
+├── onboarding.html
+├── dashboard.html
+├── explore.html
+├── create-request.html
+├── request-detail.html
+├── messages.html
+├── leaderboard.html
+├── ai-center.html
+├── notifications.html
+├── profile.html
+├── admin.html
+│
+├── /css
+│   ├── global.css
+│   ├── layout.css
+│   ├── components.css
+│   ├── animations.css
+│   └── pages/
+│       ├── landing.css
+│       ├── dashboard.css
+│       ├── explore.css
+│       └── ...
+│
+├── /js
+│   ├── app.js
+│   ├── router.js
+│   ├── storage.js
+│   ├── ai-engine.js
+│   ├── auth.js
+│   ├── ui.js
+│   └── pages/
+│       ├── dashboard.js
+│       ├── explore.js
+│       ├── create.js
+│       └── ...
+│
+├── /assets
+│   ├── icons/
+│   ├── images/
+│   └── illustrations/
+│
+└── /data
+    └── dummy-data.json
+
+🎨 UI / UX DIRECTION (MATCH YOUR IMAGES)
+
+When you provide your 10 images, the system should:
+
+Replicate layout spacing exactly
+Match color palette (primary, secondary, accent)
+Use same typography style (modern sans-serif)
+Copy card styles, shadows, borders
+Recreate animations (hover, fade, slide, scale)
+Maintain pixel-level alignment
+
+Design style must include:
+
+Soft shadows + glassmorphism
+Rounded corners (12px–20px)
+Gradient buttons
+Smooth transitions (0.3s ease)
+Skeleton loaders
+Dark/light mode toggle (bonus)
+🤖 AI FEATURE LOGIC (SIMULATED)
+
+Examples:
+
+If user types “urgent”, “ASAP” → mark urgency HIGH
+If text contains “HTML, CSS” → auto category = Web Dev
+Suggest tags based on keywords
+Rewrite description using template improvement
+🏆 BONUS SYSTEMS
+Trust Score = based on completed helps
+Badge System (Beginner → Pro Helper → Legend)
+Leaderboard ranking logic
+Notification engine
+💣 FINAL INSTRUCTION
+
+This is not a UI clone task.
+
+This is a startup-level product build.
+
+Everything must:
+
+Feel real
+Look premium
+Work logically
+Scale conceptually
