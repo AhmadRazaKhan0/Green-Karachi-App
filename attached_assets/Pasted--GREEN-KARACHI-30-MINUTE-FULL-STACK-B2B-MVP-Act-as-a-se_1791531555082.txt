@@ -1,0 +1,181 @@
+# GREEN KARACHI — 30-MINUTE FULL-STACK B2B MVP
+
+Act as a senior full-stack developer, UI/UX designer, and database architect. Build a professional, responsive, functional B2B plantation and nursery management web application called **Green Karachi**.
+
+## 1. PRIMARY OBJECTIVE
+
+Build the best working MVP possible within a 30-minute development session. Prioritize a polished UI, functional navigation, working forms, real data persistence, inventory management, and B2B ordering.
+
+Do not spend the entire session planning or explaining. Start building immediately after a brief repository inspection.
+
+Do not attempt to implement every enterprise feature before producing a working application.
+
+## 2. TECHNOLOGY
+
+Use React, TypeScript, Vite, React Router, and SCSS for the frontend.
+
+Use the existing project's backend if one is already configured. Otherwise, use the fastest suitable persistent database and authentication integration supported by the development environment, preferably Supabase or the platform's native database.
+
+Keep the architecture simple and modular. Avoid unnecessary dependencies, microservices, and lengthy setup.
+
+Never expose secrets or private API keys in frontend code.
+
+## 3. DESIGN AND BRANDING
+
+Brand: Green Karachi
+
+Create a premium, modern, nature-inspired B2B business interface.
+
+Color palette:
+
+* Forest Green: #14532D
+* Emerald: #16A34A
+* Light Green: #DCFCE7
+* Background: #F8FAF7
+* White: #FFFFFF
+* Text: #17231B
+
+Use a professional sidebar, top navigation, clean typography, responsive tables, attractive plant imagery, subtle animations, modern cards, clear status badges, and polished forms.
+
+Build a real application interface, not just a landing page.
+
+## 4. REQUIRED PAGES
+
+Create these functional pages:
+
+1. Public Home Page
+2. Login and Registration
+3. Admin Dashboard
+4. Inventory Management
+5. Product Catalog
+6. Customer Management
+7. B2B Orders
+8. Quotations
+9. Payments and Invoices
+10. Reports and Settings
+
+Use reusable components and a consistent layout.
+
+## 5. ADMIN DASHBOARD
+
+Show:
+
+* Total products
+* Available plants
+* Available soil and gardening materials
+* Low-stock items
+* Total customers
+* Pending orders
+* Monthly sales
+* Outstanding payments
+
+Use actual stored data wherever available. Provide meaningful empty states when no data exists. Do not invent real business statistics.
+
+## 6. PRODUCT AND INVENTORY MANAGEMENT
+
+Allow authorized users to:
+
+* Add, edit, search, filter, and deactivate products.
+* Manage product categories and images.
+* Record product name, SKU, unit, price, stock, and minimum stock level.
+* Track plants, soil, fertilizers, seeds, pots, and gardening supplies.
+* Record stock received, sold, damaged, or adjusted.
+* View stock movement history.
+* Identify low-stock and out-of-stock products.
+
+Maintain physical stock, reserved stock, and available stock separately where applicable.
+
+Use database transactions or equivalent concurrency-safe logic for stock reservations. Prevent overselling and negative inventory.
+
+## 7. B2B CUSTOMERS AND ORDERS
+
+Allow multiple business customers to have separate accounts and order histories.
+
+Implement:
+
+* Business customer registration.
+* Product browsing.
+* Quantity selection.
+* Bulk order creation.
+* Customer-specific pricing where configured.
+* Quotation requests.
+* Order confirmation and cancellation.
+* Order status tracking.
+* Invoice and payment records.
+
+Recalculate prices and totals on the backend. Verify stock and permissions before accepting orders.
+
+## 8. AUTHENTICATION AND SECURITY
+
+Implement functional registration, login, logout, protected routes, and role-based access.
+
+Include Admin, Staff, and Customer roles.
+
+Enforce authorization on the backend and database. Customers must not access other customers' private information or orders.
+
+Use secure password handling and supported authentication integrations.
+
+If authentication or database credentials are unavailable, clearly identify the required configuration. Never falsely claim that production authentication is connected.
+
+## 9. VISUAL AND FUNCTIONAL QUALITY
+
+All navigation links, buttons, forms, search fields, filters, and actions must work.
+
+Add:
+
+* Loading states
+* Success and error notifications
+* Form validation
+* Empty states
+* Confirmation dialogs
+* Responsive mobile navigation
+* Useful error messages
+
+Avoid placeholder buttons and unnecessary mock features.
+
+## 10. DEVELOPMENT PRIORITIES
+
+Work in this order:
+
+Priority 1: Project setup, premium layout, navigation, and dashboard.
+
+Priority 2: Authentication and database connection.
+
+Priority 3: Product catalog and inventory CRUD.
+
+Priority 4: Customer management, orders, and quotations.
+
+Priority 5: Invoices, payment records, reports, and visual refinements.
+
+If time is running out, complete and test the core workflows rather than generating many unfinished modules.
+
+## 11. EFFICIENT AI USAGE
+
+Minimize unnecessary token consumption.
+
+* Inspect existing files before editing.
+* Reuse working components and installed dependencies.
+* Avoid repeatedly scanning or rewriting the entire project.
+* Make focused changes.
+* Do not regenerate completed files without a clear reason.
+* Avoid lengthy explanations and repeated plans.
+* Run the application and resolve critical errors.
+* Prioritize a working end-to-end workflow over excessive features.
+
+If the development environment imposes a context, token, or execution limit, stop at a stable checkpoint and report the completed features and exact next steps.
+
+## 12. FINAL ACCEPTANCE
+
+Before finishing, verify that:
+
+* The application starts successfully.
+* Main pages render correctly.
+* Navigation works.
+* Product and inventory changes persist.
+* Stock quantities update correctly.
+* Customers and orders are stored and isolated.
+* Authentication and permissions work as configured.
+* Critical errors are fixed.
+* Missing integrations are disclosed.
+
+Start building now. Do not merely return a plan, sample code, or a visual mockup. Produce the most complete working MVP possible within the available session, and continue improving it without unnecessary interruptions.

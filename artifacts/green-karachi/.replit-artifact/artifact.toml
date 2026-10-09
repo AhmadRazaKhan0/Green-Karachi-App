@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/green-karachi/"
+title = "Green Karachi"
+description = "A B2B plantation and nursery management app for managing plant inventory, wholesale customers, orders, quotations, invoices, and stock movement."
+version = "1.0.0"
+id = "artifacts/green-karachi"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/green-karachi/" ]
+localPort = 22532
+
+[services.development]
+run = "pnpm --filter @workspace/green-karachi run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/green-karachi", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/green-karachi/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22532"
+BASE_PATH = "/green-karachi/"

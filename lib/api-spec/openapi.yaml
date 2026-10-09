@@ -1,22 +1,18 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Green Karachi nursery operations API
 servers:
   - url: /api
-    description: Base API path
 tags:
   - name: health
-    description: Health operations
+  - name: green-karachi
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
-      summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +20,679 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /me:
+    get:
+      operationId: getMe
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Current signed-in account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+    put:
+      operationId: saveMe
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProfileInput"
+      responses:
+        "200":
+          description: Saved profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+  /users:
+    get:
+      operationId: listUsers
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Team accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AppUser"
+  /users/{id}:
+    patch:
+      operationId: updateUser
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdate"
+      responses:
+        "200":
+          description: Updated account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppUser"
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Summary calculated from saved records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+  /catalog:
+    get:
+      operationId: getCatalog
+      tags: [green-karachi]
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+      responses:
+        "200":
+          description: Active wholesale catalogue
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+  /products:
+    get:
+      operationId: listProducts
+      tags: [green-karachi]
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+        - in: query
+          name: stock
+          schema: { type: string, enum: [all, low, out] }
+      responses:
+        "200":
+          description: Inventory products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+    post:
+      operationId: createProduct
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+  /products/{id}:
+    patch:
+      operationId: updateProduct
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductUpdate"
+      responses:
+        "200":
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+  /stock-movements:
+    get:
+      operationId: listStockMovements
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Recent stock history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StockMovement"
+    post:
+      operationId: createStockMovement
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MovementInput"
+      responses:
+        "201":
+          description: Stock movement recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StockMovement"
+  /customers:
+    get:
+      operationId: listCustomers
+      tags: [green-karachi]
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+      responses:
+        "200":
+          description: Business customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+    post:
+      operationId: createCustomer
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerInput"
+      responses:
+        "201":
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /customers/{id}:
+    patch:
+      operationId: updateCustomer
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerUpdate"
+      responses:
+        "200":
+          description: Customer updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /orders:
+    get:
+      operationId: listOrders
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Orders visible to the signed-in account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
+    post:
+      operationId: createOrder
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+      responses:
+        "201":
+          description: Order placed with stock reserved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+  /orders/{id}/status:
+    patch:
+      operationId: updateOrderStatus
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderStatusInput"
+      responses:
+        "200":
+          description: Order status updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+  /quotations:
+    get:
+      operationId: listQuotations
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Quotations visible to the signed-in account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Quotation"
+    post:
+      operationId: createQuotation
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuotationInput"
+      responses:
+        "201":
+          description: Quotation request created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quotation"
+  /quotations/{id}/status:
+    patch:
+      operationId: updateQuotationStatus
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuotationStatusInput"
+      responses:
+        "200":
+          description: Quotation updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quotation"
+  /invoices:
+    get:
+      operationId: listInvoices
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Invoices visible to the signed-in account
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Invoice"
+    post:
+      operationId: createInvoice
+      tags: [green-karachi]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InvoiceInput"
+      responses:
+        "201":
+          description: Invoice created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+  /invoices/{id}/payments:
+    post:
+      operationId: recordPayment
+      tags: [green-karachi]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentInput"
+      responses:
+        "201":
+          description: Payment recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invoice"
+  /reports:
+    get:
+      operationId: getReports
+      tags: [green-karachi]
+      responses:
+        "200":
+          description: Sales and inventory aggregates from saved records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reports"
 components:
   schemas:
     HealthStatus:
       type: object
       properties:
-        status:
-          type: string
-      required:
-        - status
-
+        status: { type: string }
+      required: [status]
+    AppUser:
+      type: object
+      properties:
+        id: { type: integer }
+        clerkUserId: { type: string }
+        email: { type: string }
+        name: { type: string }
+        role: { type: string, enum: [admin, staff, customer] }
+        customerId: { type: ["integer", "null"] }
+        createdAt: { type: string, format: date-time }
+      required: [id, clerkUserId, email, name, role, customerId, createdAt]
+    ProfileInput:
+      type: object
+      properties:
+        email: { type: string, format: email }
+        name: { type: string, minLength: 1, maxLength: 160 }
+      required: [email, name]
+    UserUpdate:
+      type: object
+      properties:
+        role: { type: string, enum: [admin, staff, customer] }
+        customerId: { type: ["integer", "null"] }
+      minProperties: 1
+    Product:
+      type: object
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        sku: { type: string }
+        category: { type: string }
+        unit: { type: string }
+        unitPrice: { type: number }
+        physicalStock: { type: integer }
+        reservedStock: { type: integer }
+        availableStock: { type: integer }
+        minimumStock: { type: integer }
+        imageUrl: { type: ["string", "null"] }
+        isActive: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+      required: [id, name, sku, category, unit, unitPrice, physicalStock, reservedStock, availableStock, minimumStock, imageUrl, isActive, createdAt, updatedAt]
+    ProductInput:
+      type: object
+      properties:
+        name: { type: string, minLength: 1 }
+        sku: { type: string, minLength: 1 }
+        category: { type: string, minLength: 1 }
+        unit: { type: string, minLength: 1 }
+        unitPrice: { type: number, minimum: 0 }
+        physicalStock: { type: integer, minimum: 0 }
+        minimumStock: { type: integer, minimum: 0 }
+        imageUrl: { type: ["string", "null"] }
+      required: [name, sku, category, unit, unitPrice, physicalStock, minimumStock]
+    ProductUpdate:
+      type: object
+      properties:
+        name: { type: string, minLength: 1 }
+        sku: { type: string, minLength: 1 }
+        category: { type: string, minLength: 1 }
+        unit: { type: string, minLength: 1 }
+        unitPrice: { type: number, minimum: 0 }
+        minimumStock: { type: integer, minimum: 0 }
+        imageUrl: { type: ["string", "null"] }
+        isActive: { type: boolean }
+      minProperties: 1
+    StockMovement:
+      type: object
+      properties:
+        id: { type: integer }
+        productId: { type: integer }
+        productName: { type: string }
+        type: { type: string, enum: [received, sold, damaged, adjustment] }
+        quantity: { type: integer }
+        note: { type: ["string", "null"] }
+        createdBy: { type: ["string", "null"] }
+        createdAt: { type: string, format: date-time }
+      required: [id, productId, productName, type, quantity, note, createdBy, createdAt]
+    MovementInput:
+      type: object
+      properties:
+        productId: { type: integer }
+        type: { type: string, enum: [received, sold, damaged, adjustment] }
+        quantity: { type: integer, not: { const: 0 } }
+        note: { type: string }
+      required: [productId, type, quantity]
+    Customer:
+      type: object
+      properties:
+        id: { type: integer }
+        businessName: { type: string }
+        contactName: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        address: { type: string }
+        paymentTerms: { type: string }
+        isActive: { type: boolean }
+        createdAt: { type: string, format: date-time }
+      required: [id, businessName, contactName, email, phone, address, paymentTerms, isActive, createdAt]
+    CustomerInput:
+      type: object
+      properties:
+        businessName: { type: string, minLength: 1 }
+        contactName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        address: { type: string }
+        paymentTerms: { type: string }
+      required: [businessName, contactName, email, phone]
+    CustomerUpdate:
+      type: object
+      properties:
+        businessName: { type: string, minLength: 1 }
+        contactName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        address: { type: string }
+        paymentTerms: { type: string }
+        isActive: { type: boolean }
+      minProperties: 1
+    OrderLineInput:
+      type: object
+      properties:
+        productId: { type: integer }
+        quantity: { type: integer, minimum: 1 }
+      required: [productId, quantity]
+    OrderLine:
+      type: object
+      properties:
+        productId: { type: integer }
+        productName: { type: string }
+        quantity: { type: integer }
+        unitPrice: { type: number }
+        lineTotal: { type: number }
+      required: [productId, productName, quantity, unitPrice, lineTotal]
+    OrderInput:
+      type: object
+      properties:
+        customerId: { type: integer }
+        notes: { type: string }
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/OrderLineInput" }
+      required: [customerId, items]
+    OrderStatusInput:
+      type: object
+      properties:
+        status: { type: string, enum: [confirmed, processing, fulfilled, cancelled] }
+      required: [status]
+    Order:
+      type: object
+      properties:
+        id: { type: integer }
+        customerId: { type: integer }
+        customerName: { type: string }
+        status: { type: string, enum: [pending, confirmed, processing, fulfilled, cancelled] }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/OrderLine" }
+        total: { type: number }
+        notes: { type: ["string", "null"] }
+        createdAt: { type: string, format: date-time }
+      required: [id, customerId, customerName, status, items, total, notes, createdAt]
+    QuotationInput:
+      type: object
+      properties:
+        customerId: { type: integer }
+        notes: { type: string }
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/OrderLineInput" }
+      required: [customerId, items]
+    QuotationStatusInput:
+      type: object
+      properties:
+        status: { type: string, enum: [quoted, accepted, rejected] }
+        notes: { type: string }
+      required: [status]
+    Quotation:
+      type: object
+      properties:
+        id: { type: integer }
+        customerId: { type: integer }
+        customerName: { type: string }
+        status: { type: string, enum: [requested, quoted, accepted, rejected] }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/OrderLine" }
+        total: { type: number }
+        notes: { type: ["string", "null"] }
+        createdAt: { type: string, format: date-time }
+      required: [id, customerId, customerName, status, items, total, notes, createdAt]
+    InvoiceInput:
+      type: object
+      properties:
+        orderId: { type: integer }
+        dueDate: { type: string, format: date }
+      required: [orderId, dueDate]
+    PaymentInput:
+      type: object
+      properties:
+        amount: { type: number, exclusiveMinimum: 0 }
+        method: { type: string, enum: [cash, bank_transfer, cheque, other] }
+        reference: { type: string }
+      required: [amount, method]
+    Invoice:
+      type: object
+      properties:
+        id: { type: integer }
+        invoiceNumber: { type: string }
+        orderId: { type: integer }
+        customerId: { type: integer }
+        customerName: { type: string }
+        total: { type: number }
+        amountPaid: { type: number }
+        outstanding: { type: number }
+        status: { type: string, enum: [unpaid, partial, paid, overdue] }
+        dueDate: { type: string, format: date }
+        createdAt: { type: string, format: date-time }
+      required: [id, invoiceNumber, orderId, customerId, customerName, total, amountPaid, outstanding, status, dueDate, createdAt]
+    Dashboard:
+      type: object
+      properties:
+        totalProducts: { type: integer }
+        plantProducts: { type: integer }
+        supplyProducts: { type: integer }
+        lowStockItems: { type: integer }
+        outOfStockItems: { type: integer }
+        totalCustomers: { type: integer }
+        pendingOrders: { type: integer }
+        monthlySales: { type: number }
+        outstandingPayments: { type: number }
+        recentMovements:
+          type: array
+          items: { $ref: "#/components/schemas/StockMovement" }
+      required: [totalProducts, plantProducts, supplyProducts, lowStockItems, outOfStockItems, totalCustomers, pendingOrders, monthlySales, outstandingPayments, recentMovements]
+    Reports:
+      type: object
+      properties:
+        monthlySales:
+          type: array
+          items:
+            type: object
+            properties:
+              month: { type: string }
+              total: { type: number }
+            required: [month, total]
+        inventoryByCategory:
+          type: array
+          items:
+            type: object
+            properties:
+              category: { type: string }
+              products: { type: integer }
+              unitsAvailable: { type: integer }
+            required: [category, products, unitsAvailable]
+        topCustomers:
+          type: array
+          items:
+            type: object
+            properties:
+              customerId: { type: integer }
+              customerName: { type: string }
+              sales: { type: number }
+            required: [customerId, customerName, sales]
+      required: [monthlySales, inventoryByCategory, topCustomers]
